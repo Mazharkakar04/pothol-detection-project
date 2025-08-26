@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GovPotholeFix - Report Road Issues</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -20,23 +19,22 @@
             </button>
             <nav>
                 <ul>
-                    <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                    <li><a href="{{ url_for('home') }}" class="nav-link active" data-target="home">Home</a></li>
                     <li><a href="#" class="nav-link" data-target="about">About</a></li>
                     <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
-                    <li><a href="#" class="nav-link" data-target="login">Login</a></li>
+                    <li><a href="{{ url_for('login') }}" class="nav-link" data-target="login">Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-<!-- Main Content Area -->
+
     <main>
-        <!-- Home Page -->
         <section id="home" class="page active">
             <div class="banner">
                 <div class="container banner-content">
                     <h2>Report Potholes, Make Roads Safer</h2>
                     <p>Help your local government identify and fix road issues in your community</p>
-                    <a href="#" class="btn nav-link" data-target="login">Report a Pothole</a>
+                    <a href="{{ url_for('login') }}" class="btn nav-link" data-target="login">Report a Pothole</a>
                 </div>
             </div>
 
@@ -69,7 +67,6 @@
             </div>
         </section>
 
-         <!-- About Page -->
         <section id="about" class="page">
             <div class="container" style="padding: 60px 0;">
                 <h2 class="section-title">About GovPotholeFix</h2>
@@ -81,7 +78,6 @@
             </div>
         </section>
 
-        <!-- Contact Page -->
         <section id="contact" class="page">
             <div class="container" style="padding: 60px 0;">
                 <h2 class="section-title">Contact Us</h2>
@@ -94,7 +90,7 @@
             </div>
         </section>
     </main>
-<!-- Footer -->
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -105,10 +101,10 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                        <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
                         <li><a href="#" class="nav-link" data-target="about">About</a></li>
                         <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
-                        <li><a href="#" class="nav-link" data-target="login">Login</a></li>
+                        <li><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
                     </ul>
                 </div>
                 <div class="footer-section footer-contact">
@@ -122,7 +118,7 @@
                 <p>&copy; 2023 Department of Public Works. All rights reserved.</p>
             </div>
         </div>
-        <script src="/static/js/scripts.js"></script>
     </footer>
-  </body>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
 </html>
