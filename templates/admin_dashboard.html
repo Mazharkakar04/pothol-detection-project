@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GovPotholeFix - Report Road Issues</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-road"></i>
+                <h1>GovPotholeFix</h1>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-target="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
+                    <li><a href="#" class="nav-link" data-target="login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<!-- Admin Dashboard -->
+        <section id="admin-dashboard" class="page dashboard">
+            <div class="container dashboard-container">
+                <div class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li class="active" data-section="admin-dashboard-main">Dashboard</li>
+                        <li data-section="all-complaints">All Complaints</li>
+                        <li data-section="user-management">User Management</li>
+                        <li class="nav-link" data-target="home">Logout</li>
+                    </ul>
+                </div>
+                <div class="dashboard-content">
+                    <div class="dashboard-section active" id="admin-dashboard-main">
+                        <h2>Admin Dashboard</h2>
+                        <div class="card">
+                            <h3>Welcome, Admin</h3>
+                            <p>System overview and statistics</p>
+                            <div class="stats">
+                                <div class="stat">
+                                    <h4>Total Complaints</h4>
+                                    <p>247</p>
+                                </div>
+                                <div class="stat">
+                                    <h4>Pending</h4>
+                                    <p>32</p>
+                                </div>
+                                <div class="stat">
+                                    <h4>In Progress</h4>
+                                    <p>15</p>
+                                </div>
+                                <div class="stat">
+                                    <h4>Completed</h4>
+                                    <p>200</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-section" id="all-complaints">
+                        <h2>All Complaints</h2>
+                        <div class="filters">
+                            <select class="filter-select">
+                                <option>Filter by Status</option>
+                                <option>Pending</option>
+                                <option>In Progress</option>
+                                <option>Completed</option>
+                            </select>
+                            <select class="filter-select">
+                                <option>Filter by Severity</option>
+                                <option>White</option>
+                                <option>Yellow</option>
+                                <option>Red</option>
+                            </select>
+                            <input type="text" placeholder="Search complaints..." class="filter-select" style="flex-grow: 1;">
+                        </div>
+                        <div class="card">
+                            <table class="complaints-table">
+                                <thead>
+                                    <tr>
+                                        <th>Complaint ID</th>
+                                        <th>User Name</th>
+                                        <th>Image</th>
+                                        <th>Status</th>
+                                        <th>Severity</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#PH12345</td>
+                                        <td>John Doe</td>
+                                        <td><img src="https://via.placeholder.com/50" alt="Pothole image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></td>
+                                        <td><span class="status-badge status-pending">Pending</span></td>
+                                        <td><span class="status-badge severity-red">Red</span></td>
+                                        <td class="action-buttons">
+                                            <button class="btn">Edit</button>
+                                            <button class="btn btn-green">Approve</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#PH12346</td>
+                                        <td>Jane Smith</td>
+                                        <td><img src="https://via.placeholder.com/50" alt="Pothole image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></td>
+                                        <td><span class="status-badge status-in-progress">In Progress</span></td>
+                                        <td><span class="status-badge severity-yellow">Yellow</span></td>
+                                        <td class="action-buttons">
+                                            <button class="btn">Edit</button>
+                                            <button class="btn btn-green">Complete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#PH12347</td>
+                                        <td>Robert Johnson</td>
+                                        <td><img src="https://via.placeholder.com/50" alt="Pothole image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></td>
+                                        <td><span class="status-badge status-completed">Completed</span></td>
+                                        <td><span class="status-badge severity-white">White</span></td>
+                                        <td class="action-buttons">
+                                            <button class="btn">View</button>
+                                            <button class="btn btn-red">Reopen</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="dashboard-section" id="user-management">
+                        <h2>User Management</h2>
+                        <div class="card">
+                            <p>User management functionality would be implemented here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GovPotholeFix</h3>
+                    <p>A initiative by the Department of Public Works to improve road safety and maintenance through community engagement.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-target="about">About</a></li>
+                        <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
+                        <li><a href="#" class="nav-link" data-target="login">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Government Plaza, City, State</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> publicworks@example.gov</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Department of Public Works. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/static/js/scripts.js"></script>
+  </body>
+</html>

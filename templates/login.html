@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GovPotholeFix - Report Road Issues</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-road"></i>
+                <h1>GovPotholeFix</h1>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-target="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
+                    <li><a href="#" class="nav-link" data-target="login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<!-- Login Page -->
+        <section id="login" class="page">
+            <div class="container login-container">
+                <div class="login-box">
+                    <div class="login-tabs">
+                        <div class="login-tab active" data-tab="user">User Login</div>
+                        <div class="login-tab" data-tab="admin">Admin Login</div>
+                    </div>
+                    <form class="login-form active" id="user-login">
+                        <div class="form-group">
+                            <label for="user-email">Email Address</label>
+                            <input type="email" id="user-email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-password">Password</label>
+                            <input type="password" id="user-password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%">Login</button>
+                    </form>
+                    <form class="login-form" id="admin-login">
+                        <div class="form-group">
+                            <label for="admin-email">Admin ID</label>
+                            <input type="text" id="admin-email" placeholder="Enter your admin ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-password">Password</label>
+                            <input type="password" id="admin-password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%">Login</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GovPotholeFix</h3>
+                    <p>A initiative by the Department of Public Works to improve road safety and maintenance through community engagement.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-target="about">About</a></li>
+                        <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
+                        <li><a href="#" class="nav-link" data-target="login">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Government Plaza, City, State</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> publicworks@example.gov</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Department of Public Works. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/static/js/scripts.js"></script>
+  </body>
+</html>
