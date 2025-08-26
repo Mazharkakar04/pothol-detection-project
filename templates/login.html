@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GovPotholeFix - Report Road Issues</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -20,50 +19,59 @@
             </button>
             <nav>
                 <ul>
-                    <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                    <li><a href="{{ url_for('home') }}" class="nav-link" data-target="home">Home</a></li>
                     <li><a href="#" class="nav-link" data-target="about">About</a></li>
                     <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
-                    <li><a href="#" class="nav-link" data-target="login">Login</a></li>
+                    <li><a href="{{ url_for('login') }}" class="nav-link" data-target="login">Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-<!-- Login Page -->
-        <section id="login" class="page">
-            <div class="container login-container">
-                <div class="login-box">
-                    <div class="login-tabs">
-                        <div class="login-tab active" data-tab="user">User Login</div>
-                        <div class="login-tab" data-tab="admin">Admin Login</div>
-                    </div>
-                    <form class="login-form active" id="user-login">
-                        <div class="form-group">
-                            <label for="user-email">Email Address</label>
-                            <input type="email" id="user-email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="user-password">Password</label>
-                            <input type="password" id="user-password" placeholder="Enter your password" required>
-                        </div>
-                        <button type="submit" class="btn" style="width: 100%">Login</button>
-                    </form>
-                    <form class="login-form" id="admin-login">
-                        <div class="form-group">
-                            <label for="admin-email">Admin ID</label>
-                            <input type="text" id="admin-email" placeholder="Enter your admin ID" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="admin-password">Password</label>
-                            <input type="password" id="admin-password" placeholder="Enter your password" required>
-                        </div>
-                        <button type="submit" class="btn" style="width: 100%">Login</button>
-                    </form>
+    <section id="login" class="page active">
+        <div class="container login-container">
+            <div class="login-box">
+                <div class="login-tabs">
+                    <div class="login-tab active" data-tab="user">User Login</div>
+                    <div class="login-tab" data-tab="admin">Admin Login</div>
                 </div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+                <form class="login-form active" id="user-login" method="POST" action="{{ url_for('login_post') }}">
+                    <input type="hidden" name="role" value="user">
+                    <div class="form-group">
+                        <label for="user-email">Email Address</label>
+                        <input type="email" id="user-email" name="user-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-password">Password</label>
+                        <input type="password" id="user-password" name="user-password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%">Login</button>
+                </form>
+                <form class="login-form" id="admin-login" method="POST" action="{{ url_for('login_post') }}">
+                    <input type="hidden" name="role" value="admin">
+                    <div class="form-group">
+                        <label for="admin-id">Admin ID</label>
+                        <input type="text" id="admin-id" name="admin-id" placeholder="Enter your admin ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <input type="password" id="admin-password" name="admin-password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%">Login</button>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -92,6 +100,6 @@
             </div>
         </div>
     </footer>
-    <script src="/static/js/scripts.js"></script>
-  </body>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
 </html>
