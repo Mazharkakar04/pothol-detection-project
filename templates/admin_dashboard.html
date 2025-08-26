@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GovPotholeFix - Report Road Issues</title>
+    <title>GovPotholeFix - Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -20,49 +19,47 @@
             </button>
             <nav>
                 <ul>
-                    <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                    <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
                     <li><a href="#" class="nav-link" data-target="about">About</a></li>
                     <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
-                    <li><a href="#" class="nav-link" data-target="login">Login</a></li>
+                    <li><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-<!-- Admin Dashboard -->
-        <section id="admin-dashboard" class="page dashboard">
-            <div class="container dashboard-container">
-                <div class="sidebar">
-                    <ul class="sidebar-menu">
-                        <li class="active" data-section="admin-dashboard-main">Dashboard</li>
-                        <li data-section="all-complaints">All Complaints</li>
-                        <li data-section="user-management">User Management</li>
-                        <li class="nav-link" data-target="home">Logout</li>
-                    </ul>
-                </div>
-                <div class="dashboard-content">
-                    <div class="dashboard-section active" id="admin-dashboard-main">
-                        <h2>Admin Dashboard</h2>
-                        <div class="card">
-                            <h3>Welcome, Admin</h3>
-                            <p>System overview and statistics</p>
-                            <div class="stats">
-                                <div class="stat">
-                                    <h4>Total Complaints</h4>
-                                    <p>247</p>
-                                </div>
-                                <div class="stat">
-                                    <h4>Pending</h4>
-                                    <p>32</p>
-                                </div>
-                                <div class="stat">
-                                    <h4>In Progress</h4>
-                                    <p>15</p>
-                                </div>
-                                <div class="stat">
-                                    <h4>Completed</h4>
-                                    <p>200</p>
-                                </div>
+    <section id="admin-dashboard" class="page dashboard active">
+        <div class="container dashboard-container">
+            <div class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="active" data-section="admin-dashboard-main">Dashboard</li>
+                    <li data-section="all-complaints">All Complaints</li>
+                    <li data-section="user-management">User Management</li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-content">
+                <div class="dashboard-section active" id="admin-dashboard-main">
+                    <h2>Admin Dashboard</h2>
+                    <div class="card">
+                        <h3>Welcome, Admin</h3>
+                        <p>System overview and statistics</p>
+                        <div class="stats">
+                            <div class="stat">
+                                <h4>Total Complaints</h4>
+                                <p>{{ complaints|length }}</p>
+                            </div>
+                            <div class="stat">
+                                <h4>Pending</h4>
+                                <p>{{ complaints|selectattr('status', 'equalto', 'Pending')|list|length }}</p>
+                            </div>
+                            <div class="stat">
+                                <h4>In Progress</h4>
+                                <p>{{ complaints|selectattr('status', 'equalto', 'In Progress')|list|length }}</p>
+                            </div>
+                            <div class="stat">
+                                <h4>Completed</h4>
+                                <p>{{ complaints|selectattr('status', 'equalto', 'Completed')|list|length }}</p>
                             </div>
                         </div>
                     </div>
@@ -96,39 +93,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for complaint in complaints %}
                                     <tr>
-                                        <td>#PH12345</td>
-                                        <td>John Doe</td>
-                                        <td><img src="https://via.placeholder.com/50" alt="Pothole image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></td>
-                                        <td><span class="status-badge status-pending">Pending</span></td>
-                                        <td><span class="status-badge severity-red">Red</span></td>
+                                        <td>#PH{{ complaint.id }}</td>
+                                        <td>User {{ complaint.user_id }}</td>
+                                        <td><img src="{{ url_for('static', filename='uploads/' + complaint.image) }}" alt="Pothole image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></td>
+                                        <td><span class="status-badge status-{{ complaint.status|lower|replace(' ', '-') }}">{{ complaint.status }}</span></td>
+                                        <td><span class="status-badge severity-{{ complaint.severity|lower }}">{{ complaint.severity }}</span></td>
                                         <td class="action-buttons">
                                             <button class="btn">Edit</button>
                                             <button class="btn btn-green">Approve</button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>#PH12346</td>
-                                        <td>Jane Smith</td>
-                                        <td><img src="https://via.placeholder.com/50" alt="Pothole image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></td>
-                                        <td><span class="status-badge status-in-progress">In Progress</span></td>
-                                        <td><span class="status-badge severity-yellow">Yellow</span></td>
-                                        <td class="action-buttons">
-                                            <button class="btn">Edit</button>
-                                            <button class="btn btn-green">Complete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#PH12347</td>
-                                        <td>Robert Johnson</td>
-                                        <td><img src="https://via.placeholder.com/50" alt="Pothole image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></td>
-                                        <td><span class="status-badge status-completed">Completed</span></td>
-                                        <td><span class="status-badge severity-white">White</span></td>
-                                        <td class="action-buttons">
-                                            <button class="btn">View</button>
-                                            <button class="btn btn-red">Reopen</button>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -141,9 +118,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -154,10 +131,10 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                        <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
                         <li><a href="#" class="nav-link" data-target="about">About</a></li>
                         <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
-                        <li><a href="#" class="nav-link" data-target="login">Login</a></li>
+                        <li><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
                     </ul>
                 </div>
                 <div class="footer-section footer-contact">
@@ -172,6 +149,6 @@
             </div>
         </div>
     </footer>
-    <script src="/static/js/scripts.js"></script>
-  </body>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
 </html>
